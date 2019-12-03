@@ -120,7 +120,7 @@ string GetText()
 //并且有一个引用参数j，用来返回这个单词最后一个字符在原字符串的位置。*/
 string GetWord(string str, int i, int& j)
 {
-	string no_use("() {}, ; \n += */ -<>\"");
+	string no_use("() {} , ;  + = * / - < > \" \' \\ [] &");
 	j = str.find_first_of(no_use, i);
 	if (j == -1)
 		return "";
@@ -143,8 +143,8 @@ int DeleteNull(string str, int i)
 bool IsBoundary(string str, int i)
 {
 	int t;
-	char arr[7] = { ',',';','{','}','(',')','\"' };
-	for (t = 0; t < 7; t++)
+	char arr[11] = { ',',';','{','}','(',')','\"','\'','[',']','\\' };
+	for (t = 0; t < 11; t++)
 		if (str[i] == arr[t])
 			return true;
 	return false;
@@ -163,7 +163,7 @@ bool Isalpha(string str, int i)
 bool IsCOperation(string str, int i)
 {
 	int t;
-	char arr[7] = { '+','-','*','/','%','=' };
+	char arr[7] = { '+','-','*','/','%','=','&' };
 	for (t = 0; t < 7; t++)
 		if (str[i] == arr[t])
 			return true;
@@ -185,9 +185,9 @@ bool IsOperation(string str, int i)
 bool IsKey(string str)
 {
 	string
-		reslist[24] = { "#include","scanf","printf","stdio.h","void","main","%d","%f","char","double","int","long","double","float","for","while","do","break","continue",
-		"switch","short","case","return","if" };
-	vector<string> ppp(reslist, reslist + 24);
+		reslist[25] = { "#include","scanf","printf","stdio.h","void","main","%d","%f","char","double","int","long","double","float","for","while","do","break","continue",
+		"switch","short","case","return","if","else" };
+	vector<string> ppp(reslist, reslist + 25);
 	int u;
 	for (u = 0; u < ppp.size(); u++)
 		if (!str.compare(ppp[u]))
